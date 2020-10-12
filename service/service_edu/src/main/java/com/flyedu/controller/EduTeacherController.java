@@ -28,6 +28,7 @@ import java.util.Map;
 @Api(description = "讲师管理")
 @RestController
 @RequestMapping("/teacher")
+@CrossOrigin
 public class EduTeacherController {
     @Autowired
     EduTeacherService eduTeacherService;
@@ -46,7 +47,7 @@ public class EduTeacherController {
     public Result removeTeacher(@PathVariable String id) {
         boolean flag = eduTeacherService.removeById(id);
         if (flag) {
-            return Result.ok().data("teacher", eduTeacherService.getById(id));
+            return Result.ok();
         } else {
             return Result.error().data("id",id);
         }
@@ -86,11 +87,12 @@ public class EduTeacherController {
         Integer level = teacherVo.getLevel();
         String begin = teacherVo.getBegin();
         String end = teacherVo.getEnd();
+        System.out.println(teacherVo.toString());
         if (!StringUtils.isEmpty(name)){
             wrapper.like("name",name);
         }
         if (!StringUtils.isEmpty(level)){
-            wrapper.eq("leave",level);
+            wrapper.eq(true,"level",level);
         }
         if (!StringUtils.isEmpty(begin)){
             wrapper.ge("gmt_create",begin);
@@ -99,21 +101,24 @@ public class EduTeacherController {
 
             wrapper.le("gmt_modified",end);
         }
+        //排序
+        wrapper.orderByDesc("gmt_create");
+
         //调用方法实现分页
-        Page<EduTeacher> teacherPage = eduTeacherService.page(page,wrapper);
+        eduTeacherService.page(page,wrapper);
         //获取总条数
         Long total = page.getTotal();
         //返回对象集合
         List<EduTeacher> teachers = page.getRecords();
         //封装数据
         Map<String,Object> map = new HashMap<>();
-        map.put("rows",total);
+        map.put("total",total);
         map.put("teachers", teachers);
         return Result.ok().data(map);
     }
 
     @ApiOperation(value = "添加讲师")
-    @PostMapping("/add")
+    @PostMapping("/addTeacher")
     public Result addTeacher(@RequestBody EduTeacher eduTeacher){
         boolean save = eduTeacherService.save(eduTeacher);
         if (save){

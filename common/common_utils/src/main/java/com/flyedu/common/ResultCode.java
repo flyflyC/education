@@ -11,9 +11,9 @@ public interface ResultCode {
     /**
      * 成功
      */
-    public static Integer SUCCESS=2000;
+    public static Integer SUCCESS=20000;
     /**
      * 失败
      */
-    public static Integer ERROR=4000;
+    public static Integer ERROR=40000;
 }
