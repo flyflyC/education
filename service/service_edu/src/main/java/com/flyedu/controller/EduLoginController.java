@@ -14,7 +14,7 @@ import java.util.HashMap;
  * @Version
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/teacher/user")
 @CrossOrigin
 public class EduLoginController {
 

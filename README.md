@@ -26,6 +26,23 @@
           （6）通过id查询
           （7）通过id修改讲师信息
 
+
+### day2
+完成了讲师管理模块的后端前台模块
+
+具体地址：[https://github.com/flyflyLJ/edu-vue](https://github.com/flyflyLJ/edu-vue)
+
+### day3
+- 集成了阿里云的对象存储OSS，完成了头像上传功能
+- 集成了阿里云的easyExcel，测试了通过上传excel改变数据库中课程表的数据
+
+————service_oos:阿里云对象存储服务
+  
+  完成了头像上传功能
+  
+————service_edu:添加了通过easyExcel上传excel文件添加课程功能
+
+
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/)
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/#build-image)

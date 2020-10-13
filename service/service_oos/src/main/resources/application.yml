@@ -1,0 +1,22 @@
+#服务端口
+server:
+  port: 8002
+  #服务名
+spring:
+  application:
+    name: service-oss
+
+  #环境设置：dev、test、prod
+  profiles:
+    active: dev
+
+  #阿里云 OSS
+  #不同的服务器，地址不同
+aliyun:
+  oss:
+    file:
+      endpoint: oss-cn-beijing.aliyuncs.com
+      keyid: LTAI4GAL6vhYitNYchcuPv81
+      keysecret: Pp6rqANFDG6eysnNYmOn38R45CF98o
+  #bucket可以在控制台创建，也可以使用java代码创建
+      bucketname: online-edu1
