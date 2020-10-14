@@ -43,6 +43,26 @@
 ————service_edu:添加了通过easyExcel上传excel文件添加课程功能
 
 
+### day4
+- 完成了课程分类管理模块
+    
+- 完成了课程管理模块的添加课程信息功能的第一个步骤及第二个步骤的章节部分
+
+            1、CourseInfoVo————课程信息视图
+            2、vo.subject:————树形显示课程
+                    OneSubjectVo:课程一级分类
+                    TwoSubjectVo：课程二级分类
+            3、vo.chapter————章节管理视图
+                    Chapter：章节
+                    VideVo：小节
+            4、EduCourseController————课程管理模块
+            5、EduChapterController————课程章节
+            5、EduVideoController————章节小节模块管理
+            
+问题：多级联动问题，树形展示问题
+                    
+
+
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/)
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/#build-image)

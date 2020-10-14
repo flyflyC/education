@@ -2,7 +2,10 @@ package com.flyedu.service;
 
 import com.flyedu.entity.EduSubject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.flyedu.entity.vo.subject.OneSubjectVo;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -19,4 +22,10 @@ public interface EduSubjectService extends IService<EduSubject> {
      * @param subjectService
      */
     void saveSubject(MultipartFile file, EduSubjectService subjectService);
+
+    /**
+     * 课程分类列表（树形）
+     * @return
+     */
+    List<OneSubjectVo> getAllOneTwoSubject();
 }
