@@ -60,7 +60,7 @@ public class EduVideoController {
     public Result deleteVideo(@PathVariable("id") String id){
         boolean b = videoService.removeById(id);
         if (!b){
-            throw new EduException(20001,"添加章节失败");
+            throw new EduException(20001,"删除小节失败");
         }
         return Result.ok();
     }

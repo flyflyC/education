@@ -3,11 +3,14 @@ package com.flyedu.service.impl;
 import com.flyedu.entity.EduCourse;
 import com.flyedu.entity.EduCourseDescription;
 import com.flyedu.entity.vo.CourseInfoVo;
+import com.flyedu.entity.vo.CoursePublishVo;
 import com.flyedu.exceptionhandler.EduException;
 import com.flyedu.mapper.EduCourseMapper;
+import com.flyedu.service.EduChapterService;
 import com.flyedu.service.EduCourseDescriptionService;
 import com.flyedu.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.flyedu.service.EduVideoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     EduCourseDescriptionService eduCourseDescriptionService;
+
+    @Autowired
+    EduVideoService eduVideoService;
+
+    @Autowired
+    EduChapterService chapterService;
     /**
      * 向课程表（edu_course）添加课程实现方法
      * @param courseInfoVo
@@ -91,5 +100,30 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
             throw new EduException(20001,"修改课程表出错");
         }
         return cid;
+    }
+
+    @Override
+    public CoursePublishVo getPublishCourseInfo(String courseId) {
+        CoursePublishVo publishCourseInfo = baseMapper.getPublishCourseInfo(courseId);
+        return publishCourseInfo;
+    }
+
+    /**
+     * 根据课程id删除所有表里面和该课程相关的内容
+     * @param courseId
+     * @return
+     */
+    @Override
+    public boolean removeCourseById(String courseId) {
+
+         boolean isVideo = eduVideoService.removeVideoById(courseId);
+         if (!isVideo){
+             throw new EduException(20001,"删除小节失败！");
+         }
+         boolean isChapter =chapterService.removeChapterById(courseId);
+         if (!isChapter){
+             throw new EduException(20001,"删除章节失败！");
+         }
+        return true;
     }
 }

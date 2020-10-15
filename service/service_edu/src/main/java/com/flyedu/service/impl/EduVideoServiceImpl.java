@@ -1,5 +1,6 @@
 package com.flyedu.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.flyedu.entity.EduVideo;
 import com.flyedu.mapper.EduVideoMapper;
 import com.flyedu.service.EduVideoService;
@@ -17,4 +18,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> implements EduVideoService {
 
+    /**
+     * 根据课程id删除小节
+     * @param courseId
+     * @return
+     */
+    @Override
+    public Boolean removeVideoById(String courseId) {
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id",courseId);
+        int delete = baseMapper.delete(wrapper);
+
+        return delete>0;
+    }
 }

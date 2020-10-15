@@ -14,8 +14,8 @@ import lombok.Data;
 public class VideoVo {
 
 
-    @ApiModelProperty(value = "章节ID")
-    private String chapterId;
+    @ApiModelProperty(value = "ID")
+    private String id;
 
     @ApiModelProperty(value = "节点名称")
     private String title;

@@ -3,6 +3,7 @@ package com.flyedu.service;
 import com.flyedu.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.flyedu.entity.vo.CourseInfoVo;
+import com.flyedu.entity.vo.CoursePublishVo;
 
 /**
  * <p>
@@ -33,4 +34,18 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     String updateCourseInfo(CourseInfoVo courseInfoVo);
+
+    /**
+     * 查询提交时的课程信息
+     * @param courseId
+     * @return
+     */
+    CoursePublishVo getPublishCourseInfo(String courseId);
+
+    /**
+     * 根据课程id删除所有表里面和该课程相关的内容
+     * @param courseId
+     * @return
+     */
+    boolean removeCourseById(String courseId);
 }
