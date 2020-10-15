@@ -61,6 +61,35 @@
             
 问题：多级联动问题，树形展示问题
                     
+### day5
+
+- 完成了课程信息确认功能即添加课程的第三个步骤
+
+- 完成了课程信息的发布功能
+
+发布即将课程的status字段改为Normal
+- 完成了小节中上传视频功能
+
+使用了阿里云的视频点播服务：1、登录阿里云，开通视频点播VOD服务；
+
+2、通过之前使用oss产生的keyId和Keysecret
+
+3、上传视频及获取视频号
+
+- 完成了删除小节时把阿里云视频点播服务里面的视频删除
+    
+    service_edu模块需要调用service_vod的删除视频功能，
+    两个功能处于两个不同的服务里面因此需要使用进行微服务注册（spring cloud很多技术的集合）
+    
+    使用nacos进行微服务的注册：使用
+        
+        1、添加依赖：服务注册和服务调用依赖
+        2、在服务的配置文件中配置nacos端口，启动入口添加注解@EnableDiscoveryClient
+        3、在需要调用的服务（消费者）中，添加写调取服务的接口，@FeignClient("服务名")
+        在接口在方法配置 @XXXMapping("服务的全路径")
+         @DeleteMapping("/eduVod/video/removeAliyunVideo/{id}")
+            public Result deleteAliyunVideo(@PathVariable("id") String id);
+
 
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
