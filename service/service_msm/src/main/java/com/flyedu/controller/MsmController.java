@@ -30,7 +30,7 @@ public class MsmController {
     @Autowired
     private MsmService msmService;
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String ,String> redisTemplate;
 
     @ApiOperation(value = "发送短信验证码")
     @GetMapping("/send/{phone}")

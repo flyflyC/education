@@ -93,7 +93,7 @@
 
 ### day6
 
-添加熔断机制：
+- 添加熔断机制：
 
  1、添加依赖：
     
@@ -120,6 +120,9 @@
  3、实现服务的接口
  
  4、在接口上的@FeignClient注解上加上：@FeignClient(name = "服务名",fallback = 实现类名.class)
+ 
+ - 完成banner管理，及讲师课程的前几条数据的前端展示功能
+ 
 
 问题：
 
@@ -167,6 +170,17 @@
 
 - 在需要添加缓存的service实现类的接口上添加注解 @Cacheable(key = "'xxx'",value = "xxx")
 
+2、短信验证实现：service_msm：使用阿里云的短信服务
+
+3、用户登录注册功能及单点登录实现
+
+- 单点登录实现方式：（1、session广播机制；2、cookie+redis实现；3、使用token实现）
+        本项目使用token实现：education-common-common_utils-src-main-java-com-flyedu-common-JwtUtils.java
+        JWT：JSON Web Token：一个轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的信息
+
+问题：
+	TypeError: Failed to execute 'fetch' on 'Window': Request with GET/HEAD method cannot have body.
+	传值为对象时，需要使用PostMapper提交，否则报错
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/)
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/#build-image)

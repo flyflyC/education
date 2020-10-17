@@ -23,7 +23,7 @@ public class JwtUtils {
      */
     public static final long EXPIRE = 1000 * 60 * 60 * 24;
     /**
-     * 秘钥
+     * 秘钥：自己规定
      */
     public static final String APP_SECRET = "abcdefg1Hijkmn2BG";
 
@@ -35,6 +35,7 @@ public class JwtUtils {
      */
     public static String getJwtToken(String id, String nickname){
 
+        //头部指明算法是HS256算法 {
         String JwtToken = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
