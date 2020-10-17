@@ -1,4 +1,4 @@
-package com.flyedu.test;
+package com.flyedu.config;
 
 
 

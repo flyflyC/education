@@ -48,6 +48,7 @@ public class EduVideoController {
     @GetMapping("/getVideoById/{id}")
     public Result getVideoById(@PathVariable("id") String id){
         EduVideo video = videoService.getById(id);
+        System.out.println(video.toString());
         HashMap<String, Object> map = new HashMap<>();
         map.put("video",video);
         return Result.ok().data(map);
@@ -66,7 +67,10 @@ public class EduVideoController {
         EduVideo video = videoService.getById(id);
         String videoSourceId = video.getVideoSourceId();
         if ( !StringUtils.isEmpty(videoSourceId)){
-            vodClient.deleteAliyunVideo(videoSourceId);
+            Result result = vodClient.deleteAliyunVideo(videoSourceId);
+            if (result.getCode()==20001){
+                throw new EduException(20001,"删除视频失败");
+            }
         }
 
         boolean b = videoService.removeById(id);

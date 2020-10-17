@@ -1,8 +1,8 @@
 server:
-  port: 8001
+  port: 8004
 spring:
   application:
-    name: service-edu
+    name: service-cms
   profiles:
     active: dev
   datasource:
@@ -20,9 +20,8 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-
-    #redis配置
-    #spring.redis.host=(192.168.44.132)redis地址
+#redis配置
+  #spring.redis.host=(192.168.44.132)redis地址
   redis:
     host: 127.0.0.1
     port: 6379
@@ -36,13 +35,14 @@ spring:
         max-idle: 5
         min-idle: 0
 
+
 # mybatis-plus配置
 mybatis-plus:
   mapper-locations: classpath:com/flyedu/mapper/xml/*Mapper.xml
-  type-aliases-package: com.flyblog.entity
+  type-aliases-package: com.flyedu.entity
   #mybatis日志
   configuration:
-   log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-field: flag  # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)

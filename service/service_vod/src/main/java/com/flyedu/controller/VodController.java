@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @Description
@@ -44,7 +45,7 @@ public class VodController {
     @ApiOperation(value = "删除阿里云上的视频")
     @DeleteMapping("/removeAliyunVideo/{id}")
     public Result deleteAliyunVideo(@PathVariable String id) throws IOException {
-
+        System.out.println(id);
         try {
             //初始化视频点播对象
             DefaultAcsClient initVodClient = InitVodObject.initVodClient(VodUtil.KEY_ID, VodUtil.KEY_SECRET);
@@ -58,5 +59,11 @@ public class VodController {
         }catch (Exception e){
             throw new EduException(20001,"删除失败");
         }
+    }
+    @ApiOperation(value = "删除阿里云上的多个视频")
+    @DeleteMapping("/removeAlyVideoBatch")
+    public Result deleteAlyVideoBatch(@RequestParam("videoList") List<String> videoList) {
+        vodService.deleteAlyVideoBach(videoList);
+        return Result.ok();
     }
 }

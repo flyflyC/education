@@ -1,4 +1,4 @@
-package com.flyedu.test;
+package com.flyedu.config;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;

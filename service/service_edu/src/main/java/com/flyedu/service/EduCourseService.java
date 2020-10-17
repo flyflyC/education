@@ -1,9 +1,12 @@
 package com.flyedu.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.flyedu.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.flyedu.entity.vo.CourseInfoVo;
 import com.flyedu.entity.vo.CoursePublishVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -48,4 +51,11 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     boolean removeCourseById(String courseId);
+
+    /**
+     * 根据id降序查询前八条课程数据
+     * @param courseQueryWrapper
+     * @return
+     */
+    List<EduCourse> getCourseList(QueryWrapper<EduCourse> courseQueryWrapper);
 }

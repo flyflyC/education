@@ -13,6 +13,10 @@
         <module>service_edu</module>
         <module>service_oos</module>
         <module>service_vod</module>
+        <module>service_cms</module>
+        <module>service_acl</module>
+        <module>service_msm</module>
+        <module>service_ucenten</module>
     </modules>
 
     <artifactId>service</artifactId>
@@ -28,7 +32,18 @@
             <artifactId>common_utils</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
+        <!--使用ribbon做负载均衡-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+            <version>2.1.1.RELEASE</version>
+        </dependency>
+        <!--hystrix(熔断机制依赖）主要使用 @HystrixCommand-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-hystrix</artifactId>
+            <version>2.1.1.RELEASE</version>
+        </dependency>
         <!--服务注册-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -41,15 +56,28 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>2.1.1.RELEASE</version>
         </dependency>
+        <!--解决报错Lcom/netflix/config/CachedDynamicIntProperty;的暂解方案-->
+        <dependency>
+            <groupId>com.netflix.archaius</groupId>
+            <artifactId>archaius-core</artifactId>
+            <version>0.7.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
+            <!--<exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
         <!--mysql-->
         <dependency>
