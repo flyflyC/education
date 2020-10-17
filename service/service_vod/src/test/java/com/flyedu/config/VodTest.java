@@ -1,4 +1,4 @@
-package com.flyedu.test;
+package com.flyedu.config;
 
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadVideoRequest;

@@ -1,7 +1,9 @@
 package com.flyedu.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flyedu.common.Result;
 import com.flyedu.entity.EduCourse;
@@ -152,10 +154,17 @@ public class EduCourseController {
     @ApiOperation(value = "发布课程信息")
     @PostMapping("/publishCourse/{id}")
     public Result publishCourse(@PathVariable String id){
+        System.out.println(id);
         EduCourse course = new EduCourse();
-        course.setId(id);
-        course.setStatus("Normal");
-        boolean b = eduCourseService.updateById(course);
+        EduCourse eduCourse = eduCourseService.getById(id);
+        //course.setId(id);
+        System.out.println(course.toString());
+        //eduCourse.setStatus("Normal");
+        String s="Normal";
+        eduCourse.setStatus(s);
+        System.out.println(course.toString());
+        boolean b = eduCourseService.updateById(eduCourse);
+        System.out.println(b);
         if (!b){
             throw new EduException(20001,"发布课程失败");
         }

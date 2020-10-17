@@ -1,4 +1,4 @@
-package com.flyedu.test;
+package com.flyedu.config;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
@@ -52,11 +52,11 @@ public class SwaggerConfig {
                 .groupName("flyfly")
                 .select()
                 //RequestHandlerSelectors，配置要扫描的接口方式：basePackage：指定要扫描的包
-                //any()：扫描全部；none()：不扫描；withClassAnnotation:扫描类上的注解，参数是一个反射对象
+                //.any()//：扫描全部；none()：不扫描；withClassAnnotation:扫描类上的注解，参数是一个反射对象
                 //withMethodAnnotation：扫描方法上的注解
                 //.apis(RequestHandlerSelectors.basePackage("com.flyedu.controller"))
                 //paths()：过滤路径
-                .paths(Predicates.not(PathSelectors.regex("/admin/*")))
+               // .paths(Predicates.not(PathSelectors.regex("/admin/*")))
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build();
     }

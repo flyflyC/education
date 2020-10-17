@@ -25,7 +25,7 @@ public class MpGenerator {
         // 2、全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir("F:\\IdeaProject\\education\\service\\service_edu" + "/src/main/java");
+        gc.setOutputDir("F:\\IdeaProject\\education\\service\\service_cms" + "/src/main/java");
         gc.setAuthor("cai fei fei");
         /**
          * 生成后是否打开资源管理器
@@ -68,7 +68,7 @@ public class MpGenerator {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("edu_chapter","edu_course","edu_course_description","edu_video");
+        strategy.setInclude("crm_banner");
         //数据库表映射到实体的命名策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
         //生成实体时去掉表前缀

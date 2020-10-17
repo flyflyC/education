@@ -3,6 +3,7 @@ package com.flyedu.service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @Description
@@ -18,4 +19,11 @@ public interface VodService {
      * @return
      */
     String uploadVideo(MultipartFile file) throws IOException;
+
+    /**
+     * 同时删除阿里云上的多个视频
+     * @param videoList
+     * @return
+     */
+    void deleteAlyVideoBach(List videoList);
 }

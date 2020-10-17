@@ -1,4 +1,4 @@
-package com.flyedu.test;
+package com.flyedu.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

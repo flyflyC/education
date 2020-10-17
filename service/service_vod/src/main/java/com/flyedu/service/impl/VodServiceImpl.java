@@ -3,13 +3,20 @@ package com.flyedu.service.impl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.flyedu.common.Result;
+import com.flyedu.exceptionhandler.EduException;
 import com.flyedu.service.VodService;
+import com.flyedu.utils.InitVodObject;
 import com.flyedu.utils.VodUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @Description
@@ -54,5 +61,28 @@ public class VodServiceImpl implements VodService {
         }
 
         return videoId;
+    }
+
+    /**
+     * 同时删除阿里云上的多个视频
+     * @param videoList
+     * @return
+     */
+    @Override
+    public void deleteAlyVideoBach(List videoList) {
+        String s = StringUtils.join(videoList, ",");
+        try {
+            //初始化视频点播对象
+            DefaultAcsClient initVodClient = InitVodObject.initVodClient(VodUtil.KEY_ID, VodUtil.KEY_SECRET);
+            //创建删除视频的request对象
+            DeleteVideoRequest videoRequest = new DeleteVideoRequest();
+            //向request对象传入id
+            videoRequest.setVideoIds(s);
+            //调用初始化对象删除id
+            initVodClient.getAcsResponse(videoRequest);
+        }catch (Exception e){
+            throw new EduException(20001,"删除失败");
+        }
+
     }
 }

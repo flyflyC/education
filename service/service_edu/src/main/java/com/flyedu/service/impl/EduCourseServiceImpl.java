@@ -1,5 +1,6 @@
 package com.flyedu.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.flyedu.entity.EduCourse;
 import com.flyedu.entity.EduCourseDescription;
 import com.flyedu.entity.vo.CourseInfoVo;
@@ -13,7 +14,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.flyedu.service.EduVideoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -125,5 +129,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
              throw new EduException(20001,"删除章节失败！");
          }
         return true;
+    }
+
+    @Cacheable(key = "'courseList'",value = "courses")
+    @Override
+    public List<EduCourse> getCourseList(QueryWrapper<EduCourse> courseQueryWrapper) {
+        List<EduCourse> courses = baseMapper.selectList(courseQueryWrapper);
+        return courses;
     }
 }

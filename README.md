@@ -91,6 +91,81 @@
             public Result deleteAliyunVideo(@PathVariable("id") String id);
 
 
+### day6
+
+添加熔断机制：
+
+ 1、添加依赖：
+    
+    <!--使用ribbon做负载均衡-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+                <version>2.1.1.RELEASE</version>
+            </dependency>
+            <!--hystrix(熔断机制依赖）主要使用 @HystrixCommand-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-netflix-hystrix</artifactId>
+                <version>2.1.1.RELEASE</version>
+            </dependency>
+
+ 2、配置熔断机制（在消费端）
+ 
+            #开启熔断机制
+            feign:
+              hystrix:
+                enabled: true
+
+ 3、实现服务的接口
+ 
+ 4、在接口上的@FeignClient注解上加上：@FeignClient(name = "服务名",fallback = 实现类名.class)
+
+问题：
+
+1：使用逻辑删除字段后需要在新增一条数据时，给逻辑删除字段加默认值，否则修改时，不能修改成功
+
+2：取消logback日志后：启动报错：`Failed to bind properties under 'logging.level' to java.util.Map<java.lang.String, org.springframework.boot.logging.LogLevel>`
+
+解决：
+`#设置日志级别
+
+    logging:
+      level:
+        root: info`
+
+3: No fallback instance of type class com.flyedu.client.VodFileDegradeFeignClient found for feign client service-vod
+报错没有找到熔断机制的类：错误出现原因，添加熔断机制后，没有把实现熔断机制的方法交给spring容器管理
+解决：加上注解：@Component
+
+4:Data source rejected establishment of connection,  message from server: "Too many connections"
+超过数据库连接数：解决方法：max_connections设置的大一些
+
+## day7 
+
+1、给首页配置Redis缓存
+
+- 下载安装Redis
+- 在yml文件中配置
+            #redis配置
+              #spring.redis.host=(192.168.44.132)redis地址
+            spring
+              redis:
+                host: 127.0.0.1
+                port: 6379
+                database: 0
+                timeout: 1800000
+                lettuce:
+                  pool:
+                    max-active: 20
+                    max-wait: -1
+                    #最大阻塞等待时间(负数表示没限制)
+                    max-idle: 5
+                    min-idle: 0
+
+- 编写redis的配置类 education\common\service_base\src\main\java\com\flyedu\config\RedisConfig.java
+
+- 在需要添加缓存的service实现类的接口上添加注解 @Cacheable(key = "'xxx'",value = "xxx")
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/)
