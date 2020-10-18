@@ -181,6 +181,22 @@
 问题：
 	TypeError: Failed to execute 'fetch' on 'Window': Request with GET/HEAD method cannot have body.
 	传值为对象时，需要使用PostMapper提交，否则报错
+	
+## day8
+
+1、登录注册：手机号登录、微信登录
+   - （需要申请微信的开发者——需要为企业）这里是有尚硅谷的谷粒学院的微信服务；通过请求到二维码后，用户扫码后，
+   1 获取code值，临时票据，类似于验证码
+   2 拿着code请求 微信固定的地址，得到两个值 accsess_token 和 openid ："https://api.weixin.qq.com/sns/oauth2/access_token" +
+"?appid=%s" +  "&secret=%s" +  "&code=%s" +  "&grant_type=authorization_code";
+   3、请求这个拼接好的地址，得到返回两个值 accsess_token 和 openid; 使用httpclient发送请求，得到返回结果（返回结果为json字符串，可以把其转换为map便于取值，传值）
+   4拿着得到accsess_token 和 openid，再去请求微信提供固定的地址，获取到扫描人信息，访问微信的资源服务器，获取用户信息
+   
+2、讲师前台展示列表
+
+
+
+
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/)
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/#build-image)
