@@ -1,10 +1,12 @@
 package com.flyedu.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flyedu.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -22,4 +24,11 @@ public interface EduTeacherService extends IService<EduTeacher> {
      * @return
      */
     List<EduTeacher> getTeacherList(QueryWrapper<EduTeacher> teacherQueryWrapper);
+
+    /**
+     * 前台讲师分页展示
+     * @param page
+     * @return
+     */
+    Map<String, Object> getTeacherFrontList(Page<EduTeacher> page);
 }

@@ -26,5 +26,12 @@ public interface UcenterMemberService extends IService<UcenterMember> {
      * @param register
      * @return
      */
-    String Register(RegisterVo register);
+    void Register(RegisterVo register);
+
+    /**
+     * 根据openid查询是否存在该微信用户
+     * @param openid
+     * @return
+     */
+    UcenterMember getMemberByOpenid(String openid);
 }

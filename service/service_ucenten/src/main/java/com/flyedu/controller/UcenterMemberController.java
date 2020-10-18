@@ -1,15 +1,18 @@
 package com.flyedu.controller;
 
 
+import com.flyedu.common.JwtUtils;
 import com.flyedu.common.Result;
 import com.flyedu.entity.UcenterMember;
 import com.flyedu.entity.vo.RegisterVo;
 import com.flyedu.service.UcenterMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
 /**
@@ -43,9 +46,17 @@ public class UcenterMemberController {
     @ApiOperation(value = "注册")
     @PostMapping("/register")
     public Result RegisterUser(@RequestBody RegisterVo register){
-        String token = ucenterMemberService.Register(register);
+        ucenterMemberService.Register(register);
+        return Result.ok();
+    }
+
+    @ApiOperation(value = "根据token获取用户信息")
+    @GetMapping("/getUserInfo")
+    public Result getUserInfo(HttpServletRequest request){
+        String memberId = JwtUtils.getMemberIdByJwtToken(request);
+        UcenterMember member = ucenterMemberService.getById(memberId);
         HashMap<String, Object> map = new HashMap<>();
-        map.put("token",token);
+        map.put("userInfo",member);
         return Result.ok().data(map);
     }
 }

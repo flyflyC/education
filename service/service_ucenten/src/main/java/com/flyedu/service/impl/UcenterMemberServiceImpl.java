@@ -10,6 +10,7 @@ import com.flyedu.mapper.UcenterMemberMapper;
 import com.flyedu.service.UcenterMemberService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -64,13 +65,15 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
     }
 
     @Override
-    public String Register(RegisterVo register) {
+    public void Register(RegisterVo register) {
+
         String nickname = register.getNickname();
         String mobile = register.getMobile();
 
         String password = register.getPassword();
 
         String code = register.getCode();
+
         if (StringUtils.isEmpty(mobile) || StringUtils.isEmpty(password) || StringUtils.isEmpty(code)){
             throw  new EduException(20001,"手机号、密码和验证码不能为空！");
         }
@@ -80,6 +83,32 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         if (!code.equals(redisCode)){
             throw  new EduException(20001,"验证码错误！");
         }
-        return null;
+
+        //判断手机号是否已经存在
+        QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
+        wrapper.eq("mobile",mobile);
+        Integer count = baseMapper.selectCount(wrapper);
+        if (count>0){
+            throw  new EduException(20001,"该手机号已注册！");
+        }
+        //插入数据库
+        UcenterMember user = new UcenterMember();
+        user.setMobile(mobile);
+        user.setNickname(nickname);
+        user.setPassword(MD5.encrypt(password));
+        user.setAvatar("https://online-edu1.oss-cn-beijing.aliyuncs.com/touxiang.jpg");
+        user.setIsDisabled(false);
+        int insert = baseMapper.insert(user);
+        if (count<0){
+            throw  new EduException(20001,"注册失败！");
+        }
+    }
+
+    @Override
+    public UcenterMember getMemberByOpenid(String openid) {
+        QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
+        wrapper.eq("openid",openid);
+        UcenterMember ucenterMember = baseMapper.selectOne(wrapper);
+        return ucenterMember;
     }
 }
