@@ -194,7 +194,17 @@
    
 2、讲师前台展示列表
 
+## day9
 
+1、讲师分页查询
+
+2、课程详情功能接口（课程多条件查询）
+
+2、视频播放获取播放凭证接口
+
+3、课程评论功能（service_edu模块远程调用service_ucenten服务的获取用户ID接口）
+
+问题：报错启动熔断机制，查询超时；原因：远程调用时，没有把路径名字写全。
 
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)

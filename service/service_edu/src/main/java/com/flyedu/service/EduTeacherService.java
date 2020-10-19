@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flyedu.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.flyedu.entity.vo.TeacherVo;
 
 import java.util.List;
 import java.util.Map;
@@ -31,4 +32,12 @@ public interface EduTeacherService extends IService<EduTeacher> {
      * @return
      */
     Map<String, Object> getTeacherFrontList(Page<EduTeacher> page);
+
+    /**
+     * 后台讲师分页多条件查询
+     * @param page
+     * @param teacherVo
+     * @return
+     */
+    Map<String, Object> getTeacherInfoList(Page<EduTeacher> page, TeacherVo teacherVo);
 }

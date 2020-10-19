@@ -77,43 +77,11 @@ public class EduTeacherController {
     public Result pageTeacherCondition(@PathVariable("current")Integer current,
                                        @PathVariable("limit") Integer limit,
                                        @RequestBody(required = false) TeacherVo teacherVo){
-
         //创建page对象
         Page<EduTeacher> page = new Page<>(current,limit);
-        //构建条件
-        QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
-        //多条件组合查询,动态sql
-        String name = teacherVo.getName();
-        Integer level = teacherVo.getLevel();
-        String begin = teacherVo.getBegin();
-        String end = teacherVo.getEnd();
-        System.out.println(teacherVo.toString());
-        if (!StringUtils.isEmpty(name)){
-            wrapper.like("name",name);
-        }
-        if (!StringUtils.isEmpty(level)){
-            wrapper.eq(true,"level",level);
-        }
-        if (!StringUtils.isEmpty(begin)){
-            wrapper.ge("gmt_create",begin);
-        }
-        if (!StringUtils.isEmpty(end)) {
 
-            wrapper.le("gmt_modified",end);
-        }
-        //排序
-        wrapper.orderByDesc("gmt_create");
 
-        //调用方法实现分页
-        eduTeacherService.page(page,wrapper);
-        //获取总条数
-        Long total = page.getTotal();
-        //返回对象集合
-        List<EduTeacher> teachers = page.getRecords();
-        //封装数据
-        Map<String,Object> map = new HashMap<>();
-        map.put("total",total);
-        map.put("teachers", teachers);
+        Map<String,Object> map = eduTeacherService.getTeacherInfoList(page,teacherVo);
         return Result.ok().data(map);
     }
 

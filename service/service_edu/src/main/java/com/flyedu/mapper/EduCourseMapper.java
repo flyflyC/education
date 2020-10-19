@@ -2,6 +2,7 @@ package com.flyedu.mapper;
 
 import com.flyedu.entity.EduCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.flyedu.entity.vo.frontvo.CourseWebVo;
 import com.flyedu.entity.vo.CoursePublishVo;
 
 /**
@@ -21,4 +22,10 @@ public interface EduCourseMapper extends BaseMapper<EduCourse> {
      */
     public CoursePublishVo getPublishCourseInfo(String courseId);
 
+    /**
+     * 根据课程id查询课程详情
+     * @param courseId
+     * @return
+     */
+    public CourseWebVo getCourseInfoById(String courseId);
 }

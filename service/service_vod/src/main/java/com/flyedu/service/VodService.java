@@ -26,4 +26,5 @@ public interface VodService {
      * @return
      */
     void deleteAlyVideoBach(List videoList);
+
 }

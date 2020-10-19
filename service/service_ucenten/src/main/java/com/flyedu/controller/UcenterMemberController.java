@@ -5,15 +5,18 @@ import com.flyedu.common.JwtUtils;
 import com.flyedu.common.Result;
 import com.flyedu.entity.UcenterMember;
 import com.flyedu.entity.vo.RegisterVo;
+import com.flyedu.entity.vo.UcenterMemberVo;
 import com.flyedu.service.UcenterMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.http.HttpRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -58,6 +61,15 @@ public class UcenterMemberController {
         HashMap<String, Object> map = new HashMap<>();
         map.put("userInfo",member);
         return Result.ok().data(map);
+    }
+
+    @ApiOperation(value = "根据token获取用户信息")
+    @PostMapping("/getUserInfoForCom/{id}")
+    public UcenterMemberVo getUserInfoForCom(@PathVariable("id") String id){
+        UcenterMember ucenterMember =ucenterMemberService.getById(id);
+        UcenterMemberVo memberVo = new UcenterMemberVo();
+        BeanUtils.copyProperties(ucenterMember,memberVo);
+        return memberVo;
     }
 }
 

@@ -1,12 +1,16 @@
 package com.flyedu.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flyedu.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.flyedu.entity.vo.frontvo.CourseFrontVo;
+import com.flyedu.entity.vo.frontvo.CourseWebVo;
 import com.flyedu.entity.vo.CourseInfoVo;
 import com.flyedu.entity.vo.CoursePublishVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -58,4 +62,19 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     List<EduCourse> getCourseList(QueryWrapper<EduCourse> courseQueryWrapper);
+
+    /**
+     * 前台数据展示：多条件分页查询
+     * @param pageCourse
+     * @param courseFrontVo
+     * @return
+     */
+    Map<String, Object> getCourseFrontList(Page<EduCourse> pageCourse, CourseFrontVo courseFrontVo);
+
+    /**
+     * 根据课程id查询课程详情
+     * @param courseId
+     * @return
+     */
+    CourseWebVo getBaseCourseInfo(String courseId);
 }

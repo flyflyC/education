@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 /**
- * @Description
+ * @Description 远程调用视频服务
  * @ClassName VodClient
  * @Author cai feifei
  * @date 2020.10.15 21:55

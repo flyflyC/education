@@ -2,6 +2,8 @@ package com.flyedu.controller;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.flyedu.common.Result;
 import com.flyedu.exceptionhandler.EduException;
 import com.flyedu.service.VodService;
@@ -32,6 +34,7 @@ public class VodController {
 
     @Autowired(required = false)
     private VodService vodService;
+
 
     @ApiOperation(value = "上传视频到阿里云")
     @PostMapping("/uploadAliyunVideo")
@@ -65,5 +68,28 @@ public class VodController {
     public Result deleteAlyVideoBatch(@RequestParam("videoList") List<String> videoList) {
         vodService.deleteAlyVideoBach(videoList);
         return Result.ok();
+    }
+
+    @ApiOperation(value = "获取视频播放凭证")
+    @GetMapping("/getPlayAuth/{id}")
+    public Result getPlayAuth(@PathVariable String id){
+        try {
+            //初始化视频点播对象
+            DefaultAcsClient initVodClient = InitVodObject.initVodClient(VodUtil.KEY_ID, VodUtil.KEY_SECRET);
+            System.out.println(initVodClient);
+            //创建获取凭证的request对象及response对象
+            GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+            //向request中传递视频id
+            request.setVideoId(id);
+            //调用方法获取凭证
+            GetVideoPlayAuthResponse response = initVodClient.getAcsResponse(request);
+            String playAuth = response.getPlayAuth();
+            System.out.println(playAuth);
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("playAuth",playAuth);
+            return Result.ok().data(map);
+        }catch (Exception e){
+            throw new EduException(20001,"获取凭证失败");
+        }
     }
 }
