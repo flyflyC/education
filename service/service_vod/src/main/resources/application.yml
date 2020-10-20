@@ -21,8 +21,3 @@ spring:
       #最大总上传数据大小
       max-request-size: 1024MB
 #阿里云vod
-aliyun:
-  vod:
-    file:
-      keyid: LTAI4G2Mdac24hUvsmpDZ8QX
-      Keysecret: vlmT57nCFpEhwKeZjNjSRQmjRGE1wj
