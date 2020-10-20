@@ -55,7 +55,13 @@ feign:
     enabled: true
 
 #超时时间（默认为1000m）
-
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds=3000:
 
 #设置日志级别
 logging:

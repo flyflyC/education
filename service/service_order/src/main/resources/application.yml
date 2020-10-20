@@ -1,8 +1,8 @@
 server:
-  port: 8150
+  port: 8007
 spring:
   application:
-    name: service-ucenten
+    name: service-order
   profiles:
     active: dev
   datasource:
@@ -36,8 +36,6 @@ spring:
         max-idle: 5
         min-idle: 0
 
-# 微信开放平台 appid
-
 # mybatis-plus配置
 mybatis-plus:
   mapper-locations: classpath:com/flyedu/mapper/xml/*Mapper.xml
@@ -64,6 +62,9 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds=3000:
+
+#微信支付相关
+
 
 #设置日志级别
 logging:
