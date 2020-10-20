@@ -17,6 +17,8 @@
         <module>service_acl</module>
         <module>service_msm</module>
         <module>service_ucenten</module>
+        <module>service_order</module>
+        <module>service_statistics</module>
     </modules>
 
     <artifactId>service</artifactId>

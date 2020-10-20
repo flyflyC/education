@@ -1,7 +1,5 @@
-package com.flyedu.entity.vo;
+package com.flyedu.commonvo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,7 +11,7 @@ import lombok.Data;
  * @Version
  */
 @Data
-public class UcenterMemberVo {
+public class UcentenMemberVo {
 
     @ApiModelProperty(value = "会员id")
     private String id;
@@ -22,4 +20,6 @@ public class UcenterMemberVo {
     private String nickname;
     @ApiModelProperty(value = "用户头像")
     private String avatar;
+    @ApiModelProperty(value = "手机号")
+    private String mobile;
 }

@@ -1,14 +1,12 @@
 package com.flyedu.controller;
 
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flyedu.client.UcentenClient;
 import com.flyedu.common.JwtUtils;
 import com.flyedu.common.Result;
+import com.flyedu.commonvo.UcentenMemberVo;
 import com.flyedu.entity.EduComment;
-import com.flyedu.entity.EduTeacher;
-import com.flyedu.entity.vo.frontvo.UcentenMemberVo;
 import com.flyedu.exceptionhandler.EduException;
 import com.flyedu.service.EduCommentService;
 import io.swagger.annotations.Api;

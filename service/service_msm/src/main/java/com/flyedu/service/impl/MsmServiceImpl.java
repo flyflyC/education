@@ -8,8 +8,6 @@ import com.aliyuncs.IAcsClient;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.flyedu.service.MsmService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -36,7 +34,7 @@ public class MsmServiceImpl implements MsmService {
         if(StringUtils.isEmpty(phone)) {return false;}
 
         DefaultProfile profile =
-                DefaultProfile.getProfile("cn-hangzhou", "LTAI4GAL6vhYitNYchcuPv81", "Pp6rqANFDG6eysnNYmOn38R45CF98o");
+                DefaultProfile.getProfile("cn-hangzhou", "accessKeyId", "secret");
         IAcsClient client = new DefaultAcsClient(profile);
 
         //设置相关固定的参数

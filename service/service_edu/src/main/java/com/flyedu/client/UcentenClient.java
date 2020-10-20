@@ -1,6 +1,6 @@
 package com.flyedu.client;
 
-import com.flyedu.entity.vo.frontvo.UcentenMemberVo;
+import com.flyedu.commonvo.UcentenMemberVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;

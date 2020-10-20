@@ -3,20 +3,18 @@ package com.flyedu.controller;
 
 import com.flyedu.common.JwtUtils;
 import com.flyedu.common.Result;
+import com.flyedu.commonvo.UcentenMemberVo;
 import com.flyedu.entity.UcenterMember;
 import com.flyedu.entity.vo.RegisterVo;
-import com.flyedu.entity.vo.UcenterMemberVo;
 import com.flyedu.service.UcenterMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.http.HttpRequest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>
@@ -65,11 +63,20 @@ public class UcenterMemberController {
 
     @ApiOperation(value = "根据token获取用户信息")
     @PostMapping("/getUserInfoForCom/{id}")
-    public UcenterMemberVo getUserInfoForCom(@PathVariable("id") String id){
+    public UcentenMemberVo getUserInfoForCom(@PathVariable("id") String id){
         UcenterMember ucenterMember =ucenterMemberService.getById(id);
-        UcenterMemberVo memberVo = new UcenterMemberVo();
+        UcentenMemberVo memberVo = new UcentenMemberVo();
         BeanUtils.copyProperties(ucenterMember,memberVo);
         return memberVo;
+    }
+
+    @ApiOperation(value = "统计一天中注册的人数")
+    @GetMapping("/countRegister/{day}")
+    public int countRegister(@PathVariable String day){
+        int count =ucenterMemberService.countRegister(day);
+       /* HashMap<String, Object> map = new HashMap<>();
+        map.put("countRegister",count)*/;
+        return count;
     }
 }
 

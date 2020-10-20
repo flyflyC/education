@@ -73,6 +73,7 @@ public class VodController {
     @ApiOperation(value = "获取视频播放凭证")
     @GetMapping("/getPlayAuth/{id}")
     public Result getPlayAuth(@PathVariable String id){
+        System.out.println(id);
         try {
             //初始化视频点播对象
             DefaultAcsClient initVodClient = InitVodObject.initVodClient(VodUtil.KEY_ID, VodUtil.KEY_SECRET);

@@ -6,13 +6,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flyedu.common.Result;
+import com.flyedu.commonvo.CourseWebOrderVo;
 import com.flyedu.entity.EduCourse;
 import com.flyedu.entity.vo.CourseInfoVo;
 import com.flyedu.entity.vo.CoursePublishVo;
+import com.flyedu.entity.vo.frontvo.CourseWebVo;
 import com.flyedu.exceptionhandler.EduException;
 import com.flyedu.service.EduCourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -169,6 +172,21 @@ public class EduCourseController {
             throw new EduException(20001,"发布课程失败");
         }
         return Result.ok();
+    }
+
+    /**
+     * 给订单服务提供远程调用接口
+     * @param courseId
+     * @return
+     */
+    @ApiOperation(value = "通过课程id获取课程信息")
+    @PostMapping("/getCourseInfoToOrder/{courseId}")
+    public CourseWebOrderVo getCourseInfoToOrder(@PathVariable String courseId){
+        CourseWebVo baseCourseInfo = eduCourseService.getBaseCourseInfo(courseId);
+        CourseWebOrderVo courseWebOrderVo = new CourseWebOrderVo();
+        BeanUtils.copyProperties(baseCourseInfo,courseWebOrderVo);
+
+        return courseWebOrderVo;
     }
 }
 

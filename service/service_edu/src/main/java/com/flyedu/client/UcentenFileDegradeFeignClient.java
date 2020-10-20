@@ -1,11 +1,7 @@
 package com.flyedu.client;
 
-import com.flyedu.common.Result;
-import com.flyedu.entity.vo.frontvo.UcentenMemberVo;
+import com.flyedu.commonvo.UcentenMemberVo;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * @Description

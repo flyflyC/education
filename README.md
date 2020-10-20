@@ -207,6 +207,19 @@
 问题：报错启动熔断机制，查询超时；原因：远程调用时，没有把路径名字写全。
 
 
+## day10
+
+1、微信支付功能完成（service_order)
+    - 创建订单
+    - 通过商户id调用微信接口，传递支付参数，获取支付二维码
+    - 扫码支付，支付时，每3秒调取后端支付状态，支付成功后结束
+    
+2、统计分析————生成统计信息接口完成(service_statistics)
+
+问题：各个服务之间调取不同，开始时，通过查询调取服务的路径和熔断机制查询问题所在，后面一直报超时，最后通过访问nacos的网页看各个服务的状态找到问题所在
+
+
+
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/)
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/maven-plugin/reference/html/#build-image)
