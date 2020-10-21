@@ -43,7 +43,7 @@ public class EduSubjectController {
      * @return
      */
     @ApiOperation(value = "获取课程树形菜单")
-    @GetMapping("getAllSubject")
+    @GetMapping("/getAllSubject")
     public Result getAll(){
         List<OneSubjectVo> list = eduSubjectService.getAllOneTwoSubject();
         HashMap<String, Object> map = new HashMap<>();

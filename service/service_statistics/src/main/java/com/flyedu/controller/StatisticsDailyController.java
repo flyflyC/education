@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -21,7 +22,7 @@ import java.util.HashMap;
  */
 @Api(description = "统计分析")
 @RestController
-@RequestMapping("/staService/statistics")
+@RequestMapping("/staService")
 @CrossOrigin
 public class StatisticsDailyController {
 
@@ -36,6 +37,12 @@ public class StatisticsDailyController {
         System.out.println(count);
         HashMap<String, Object> map = new HashMap<>();
         map.put("countRegister",count);
+        return Result.ok().data(map);
+    }
+    @ApiOperation(value = "展示数据")
+    @GetMapping("/showDate/{type}/{begin}/{end}")
+    public Result showDate(@PathVariable String type,@PathVariable String begin,@PathVariable String end){
+        Map<String,Object> map = statisticsDailyService.getShowDate(type,begin,end);
         return Result.ok().data(map);
     }
 }
