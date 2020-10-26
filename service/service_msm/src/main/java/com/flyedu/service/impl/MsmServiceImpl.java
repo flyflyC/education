@@ -34,7 +34,7 @@ public class MsmServiceImpl implements MsmService {
         if(StringUtils.isEmpty(phone)) {return false;}
 
         DefaultProfile profile =
-                DefaultProfile.getProfile("cn-hangzhou", "LTAI4G2Mdac24hUvsmpDZ8QX", "vlmT57nCFpEhwKeZjNjSRQmjRGE1wj");
+                DefaultProfile.getProfile("cn-hangzhou", "LTAI4GAL6vhYitNYchcuPv81", "Pp6rqANFDG6eysnNYmOn38R45CF98o");
         IAcsClient client = new DefaultAcsClient(profile);
 
         //设置相关固定的参数

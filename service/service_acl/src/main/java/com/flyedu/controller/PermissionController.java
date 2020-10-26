@@ -1,6 +1,7 @@
 package com.flyedu.controller;
 
 
+import com.baomidou.mybatisplus.extension.api.R;
 import com.flyedu.common.Result;
 import com.flyedu.entity.Permission;
 import com.flyedu.service.PermissionService;
@@ -43,6 +44,13 @@ public class PermissionController {
     @GetMapping("/removeAllChildren/{id}")
     public Result removeAllChildren(@PathVariable String id) {
         permissionService.removeAllChildren(id);
+        return Result.ok();
+    }
+
+    @ApiOperation(value = "给角色分配权限")
+    @PostMapping("/doAssign")
+    public Result doAssign(String roleId, String[] permissionId) {
+        permissionService.saveRolePermissionRealtionShip(roleId,permissionId);
         return Result.ok();
     }
 }
