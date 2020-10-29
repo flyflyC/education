@@ -1,13 +1,11 @@
 package com.flyedu.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flyedu.common.Result;
 import com.flyedu.entity.EduTeacher;
 import com.flyedu.entity.vo.TeacherVo;
 import com.flyedu.service.EduTeacherService;
-import org.springframework.util.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,7 @@ import java.util.Map;
  */
 @Api(description = "讲师管理")
 @RestController
-@RequestMapping("/teacher")
+@RequestMapping("/eduService/teacher")
 @CrossOrigin
 public class EduTeacherController {
     @Autowired

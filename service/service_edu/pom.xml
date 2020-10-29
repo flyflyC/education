@@ -11,13 +11,8 @@
 
     <artifactId>service_edu</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.4.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
+
+        <!--<dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.4.0</version>
@@ -27,7 +22,7 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-core</artifactId>
             <version>3.4.0</version>
-        </dependency>
+        </dependency>-->
         <!-- easyExcel -->
         <dependency>
             <groupId>com.alibaba</groupId>

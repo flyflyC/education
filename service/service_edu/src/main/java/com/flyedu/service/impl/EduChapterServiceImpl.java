@@ -2,12 +2,9 @@ package com.flyedu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.flyedu.entity.EduChapter;
-import com.flyedu.entity.EduSubject;
 import com.flyedu.entity.EduVideo;
 import com.flyedu.entity.vo.chapter.ChapterVo;
 import com.flyedu.entity.vo.chapter.VideoVo;
-import com.flyedu.entity.vo.subject.OneSubjectVo;
-import com.flyedu.entity.vo.subject.TwoSubjectVo;
 import com.flyedu.exceptionhandler.EduException;
 import com.flyedu.mapper.EduChapterMapper;
 import com.flyedu.service.EduChapterService;

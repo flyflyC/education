@@ -9,8 +9,6 @@ import com.flyedu.exceptionhandler.EduException;
 import com.flyedu.mapper.UcenterMemberMapper;
 import com.flyedu.service.UcenterMemberService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import io.swagger.annotations.ApiModelProperty;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

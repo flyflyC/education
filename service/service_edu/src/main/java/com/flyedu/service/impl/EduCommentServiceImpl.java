@@ -3,7 +3,6 @@ package com.flyedu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flyedu.entity.EduComment;
-import com.flyedu.entity.EduCourse;
 import com.flyedu.mapper.EduCommentMapper;
 import com.flyedu.service.EduCommentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

@@ -2,7 +2,6 @@ package com.flyedu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.flyedu.client.UcentenClient;
-import com.flyedu.common.Result;
 import com.flyedu.entity.StatisticsDaily;
 import com.flyedu.mapper.StatisticsDailyMapper;
 import com.flyedu.service.StatisticsDailyService;
@@ -11,6 +10,9 @@ import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,5 +50,50 @@ public class StatisticsDailyServiceImpl extends ServiceImpl<StatisticsDailyMappe
         int insert = baseMapper.insert(sta);
         System.out.println(insert);
         return countRegister;
+    }
+
+    /**
+     * 显示需要展示的类型和时间区段
+     * @param type
+     * @param begin
+     * @param end
+     * @return
+     */
+    @Override
+    public Map<String, Object> getShowDate(String type, String begin, String end) {
+        QueryWrapper<StatisticsDaily> wrapper = new QueryWrapper<>();
+        //between在两者之间
+        wrapper.between("date_calculated",begin,end);
+        //需要查询的字段名字
+        wrapper.select("date_calculated",type);
+
+        List<StatisticsDaily> statisticsDailies = baseMapper.selectList(wrapper);
+        List<String> dateCalculatedList = new ArrayList<>();
+        List<Integer> numList = new ArrayList<>();
+        for (StatisticsDaily sta:statisticsDailies) {
+            dateCalculatedList.add(sta.getDateCalculated());
+            //封装对应数据
+            switch (type){
+                case "login_num":
+                    numList.add( sta.getLoginNum());
+                    break;
+                case "register_num":
+                    numList.add(sta.getRegisterNum());
+                    break;
+                case "video_view_num":
+                    numList.add(sta.getVideoViewNum());
+                    break;
+                case "course_num":
+                    numList.add(sta.getCourseNum());
+                    break;
+                default:
+                    break;
+            }
+        }
+        //把封装之后两个list集合放到map集合，进行返回
+        Map<String, Object> map = new HashMap<>();
+        map.put("date_calculatedList",dateCalculatedList);
+        map.put("numDataList",numList);
+        return map;
     }
 }

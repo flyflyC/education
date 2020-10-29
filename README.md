@@ -218,6 +218,18 @@
 
 问题：各个服务之间调取不同，开始时，通过查询调取服务的路径和熔断机制查询问题所在，后面一直报超时，最后通过访问nacos的网页看各个服务的状态找到问题所在
 
+## day11
+
+1、统计接口完善
+
+2、图表功能结合定时任务，每天0点、7点、17点统计一次数据
+
+3、完成网关服务：F:\IdeaProject\education\infrastructure\api_gateway
+
+4、菜单查询
+
+问题：网关服务，报各种错：大概问题错误：1、gateway整合了：spring-boot-starter-web；spring-boot-starter-webflux；，如果父pom或者自身含有这两个就会报错
+2、Springboot和springcloud整合的版本问题也会导致问题报错
 
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)

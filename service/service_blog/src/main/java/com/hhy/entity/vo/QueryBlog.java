@@ -1,0 +1,12 @@
+package com.hhy.entity.vo;
+
+import lombok.Data;
+
+@Data
+public class QueryBlog {
+
+    private String username;
+
+    private String title;
+
+}

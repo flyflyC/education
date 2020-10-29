@@ -3,7 +3,6 @@ package com.flyedu.controller;
 
 import com.flyedu.client.VodClient;
 import com.flyedu.common.Result;
-import com.flyedu.entity.EduChapter;
 import com.flyedu.entity.EduVideo;
 import com.flyedu.exceptionhandler.EduException;
 import com.flyedu.service.EduVideoService;
