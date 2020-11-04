@@ -17,7 +17,6 @@ public class DateUtil {
 
     /**
      * 格式化日期
-     *
      * @param date
      * @return
      */
@@ -29,7 +28,6 @@ public class DateUtil {
 
     /**
      * 在日期date上增加amount天 。
-     *
      * @param date   处理的日期，非null
      * @param amount 要加的天数，可能为负数
      */

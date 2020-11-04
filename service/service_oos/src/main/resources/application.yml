@@ -17,3 +17,8 @@ spring:
         server-addr: 127.0.0.1:8080
   #阿里云 OSS
   #不同的服务器，地址不同
+aliyun:
+  vod:
+    file:
+      keyid: LTAI4G2Mdac24hUvsmpDZ8QX
+      keysecret: vlmT57nCFpEhwKeZjNjSRQmjRGE1wj

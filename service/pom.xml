@@ -19,6 +19,8 @@
         <module>service_ucenten</module>
         <module>service_order</module>
         <module>service_statistics</module>
+        <module>service_exam</module>
+        <module>service_blog</module>
     </modules>
 
     <artifactId>service</artifactId>

@@ -25,7 +25,7 @@ public class MpGenerator {
         // 2、全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir("F:\\IdeaProject\\education\\service\\service_acl" + "/src/main/java");
+        gc.setOutputDir("F:\\IdeaProject\\education\\service\\service_blog" + "/src/main/java");
         gc.setAuthor("cai fei fei");
         /**
          * 生成后是否打开资源管理器
@@ -59,7 +59,7 @@ public class MpGenerator {
         // 4、包配置
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName("eduservice"); //模块名
-        pc.setParent("com.flyedu");
+        pc.setParent("com.flyedu.blog");
         pc.setController("controller");
         pc.setEntity("entity");
         pc.setService("service");
@@ -68,11 +68,11 @@ public class MpGenerator {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("acl_user_role","acl_user","acl_role_permission","acl_role","acl_permission");
+        strategy.setInclude("v_blog","v_commentator");
         //数据库表映射到实体的命名策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
         //生成实体时去掉表前缀 strategy.setTablePrefix("t" + "_");
-        strategy.setTablePrefix("acl" + "_");
+        strategy.setTablePrefix("v" + "_");
 
         //数据库表字段映射到实体的命名策略
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);

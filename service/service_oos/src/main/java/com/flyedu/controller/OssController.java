@@ -2,6 +2,7 @@ package com.flyedu.controller;
 
 import com.flyedu.common.Result;
 import com.flyedu.service.OssService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +20,7 @@ import java.util.HashMap;
  * @date 2020.10.12 23:34
  * @Version
  */
+@Api(description = "oss服务")
 @RestController
 @RequestMapping("/eduOss")
 @CrossOrigin

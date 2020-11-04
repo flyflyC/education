@@ -39,14 +39,12 @@ public class JwtUtils {
         String JwtToken = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
-
                 .setSubject("edu-user")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
                 //设置token主体部分 ，存储用户信息
                 .claim("id", id)
                 .claim("nickname", nickname)
-
                 .signWith(SignatureAlgorithm.HS256, APP_SECRET)
                 .compact();
 

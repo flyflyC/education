@@ -1,14 +1,14 @@
-package com.flyedu.controller;
+package com.flyedu.blog.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.flyedu.client.UcentenClient;
+import com.flyedu.blog.client.UcentenClient;
+import com.flyedu.blog.entity.Commentator;
+import com.flyedu.blog.service.CommentatorService;
 import com.flyedu.common.JwtUtils;
 import com.flyedu.common.Result;
 import com.flyedu.commonvo.UcentenMemberVo;
-import com.flyedu.entity.EduComment;
 import com.flyedu.exceptionhandler.EduException;
-import com.flyedu.service.EduCommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +20,19 @@ import java.util.Map;
 
 /**
  * <p>
- * 评论 前端控制器
+ *  前端控制器
  * </p>
  *
  * @author cai fei fei
- * @since 2020-10-19
+ * @since 2020-10-30
  */
-@Api(description = "课程评论管理")
+@Api(description = "博客评论管理")
 @CrossOrigin
 @RestController
-@RequestMapping("/eduService/comment")
-public class EduCommentController {
-
+@RequestMapping("/eduBlog/commentator")
+public class CommentatorController {
     @Autowired
-    private EduCommentService commentService;
+    private CommentatorService commentatorService;
 
     @Autowired
     private UcentenClient ucentenClient;
@@ -41,17 +40,17 @@ public class EduCommentController {
     @ApiOperation(value = "分页查询")
     @GetMapping("/pageComment/{current}/{limit}/{courseId}")
     public Result pageComment(@PathVariable("current")Integer current,
-                              @PathVariable("limit") Integer limit,@PathVariable String courseId){
+                              @PathVariable("limit") Integer limit, @PathVariable String blogId){
         //创建page对象
-        Page<EduComment> page = new Page<>(current,limit);
-        Map<String,Object> map = commentService.getPageComment(page,courseId);
+        Page<Commentator> page = new Page<>(current,limit);
+        Map<String,Object> map = commentatorService.getPageComment(page,blogId);
         return Result.ok().data(map);
     }
 
 
     @ApiOperation(value = "添加评论")
     @PostMapping("/addComment")
-    public Result addComment(@RequestBody EduComment comment,HttpServletRequest request){
+    public Result addComment(@RequestBody Commentator comment, HttpServletRequest request){
         System.out.println(comment.toString());
         String memberId = JwtUtils.getMemberIdByJwtToken(request);
         System.out.println(memberId);
@@ -62,11 +61,10 @@ public class EduCommentController {
         UcentenMemberVo userInfoForCom = ucentenClient.getUserInfoForCom(memberId);
         String nickName = userInfoForCom.getNickname();
         String avatar =  userInfoForCom.getAvatar();
-        comment.setAvatar(avatar);
-        comment.setNickname(nickName);
+        comment.setCname(nickName);
 
         System.out.println(comment.toString());
-        boolean save = commentService.save(comment);
+        boolean save = commentatorService.save(comment);
         if (!save){
             throw new EduException(20001,"添加评论失败");
         }
@@ -76,7 +74,7 @@ public class EduCommentController {
     @ApiOperation(value = "删除评论")
     @DeleteMapping("/addComment/{id}")
     public Result deleteComment(@PathVariable String id){
-        boolean b = commentService.removeById(id);
+        boolean b = commentatorService.removeById(id);
         if (b) {
             return Result.ok();
         } else {

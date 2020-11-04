@@ -68,7 +68,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         //作者信息
         Contact DEFAULT_CONTACT = new Contact("flyfly", "https://blog.csdn.net/qq_41510551", "1903203411@qq.com");
-        return new ApiInfo("flyblog的Swagger Api文档",
+        return new ApiInfo("fly edu的Swagger Api文档",
                 "在线教育",
                 "v1.0",
                 "urn:tos",
