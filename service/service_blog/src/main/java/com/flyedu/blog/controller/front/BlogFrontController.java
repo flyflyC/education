@@ -156,13 +156,13 @@ public class BlogFrontController {
         if (StringUtils.isEmpty(memberId)){
             return Result.error().message("要登录才能查看个人博客，亲先登录吧！");
         }
-        System.out.println(blog.toString());
+        //System.out.println(blog.toString());
         if (StringUtils.isEmpty(blog)){
             return Result.error();
         }
         blog.setMemberId(memberId);
         UcentenMemberVo userInfoForCom = ucentenClient.getUserInfoForCom(memberId);
-        System.out.println(userInfoForCom);
+        //System.out.println(userInfoForCom);
         blog.setUsername(userInfoForCom.getNickname());
         blog.setGoods(0);
         blog.setStatus(0);
@@ -187,26 +187,36 @@ public class BlogFrontController {
         if (StringUtils.isEmpty(blog)){
             return Result.error();
         }
-        blog.setMemberId(memberId);
-        UcentenMemberVo userInfoForCom = ucentenClient.getUserInfoForCom(memberId);
-        System.out.println(userInfoForCom);
-        blog.setUsername(userInfoForCom.getNickname());
-        blog.setGoods(0);
-        //status：0表示发布，1表示未发布
-        blog.setStatus(1);
-        blog.setViews(0);
-        blog.setComments(0);
-        boolean save = blogService.save(blog);
-        if(save){
-            return Result.ok();
+        System.out.println(blog.toString());
+        if (!StringUtils.isEmpty(blog.getId())){
+            boolean updateById = blogService.updateById(blog);
+            if(updateById){
+                return Result.ok();
+            }else {
+                return Result.error();
+            }
         }else {
-            return Result.error();
+            blog.setMemberId(memberId);
+            UcentenMemberVo userInfoForCom = ucentenClient.getUserInfoForCom(memberId);
+            System.out.println(userInfoForCom);
+            blog.setUsername(userInfoForCom.getNickname());
+            blog.setGoods(0);
+            //status：0表示发布，1表示未发布
+            blog.setStatus(1);
+            blog.setViews(0);
+            blog.setComments(0);
+            boolean save = blogService.save(blog);
+            if(save){
+                return Result.ok();
+            }else {
+                return Result.error();
+            }
         }
     }
     @ApiOperation("修改并发布博客")
     @PostMapping("updateIssueBlog")
     public Result updateIssueBlog(@RequestBody Blog blog){
-        System.out.println(blog.toString());
+        //System.out.println(blog.toString());
         if (StringUtils.isEmpty(blog)){
             return Result.error();
         }

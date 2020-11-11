@@ -45,7 +45,7 @@ public class BlogController {
     @GetMapping("detail/{id}")
     public Result detail(@PathVariable("id") String id){
         Blog blog = blogService.getById(id);
-        System.out.println(blog);
+        //System.out.println(blog);
         System.out.println(id);
         //Assert.notNull(blog,"该博客已被删除");
         Map<String,Object> map = new HashMap<>();
@@ -122,7 +122,7 @@ public class BlogController {
 
     @PostMapping("updateBlog")
     public Result updateBlog(@RequestBody Blog blog){
-        System.out.println(blog.toString());
+        //System.out.println(blog.toString());
         if (StringUtils.isEmpty(blog)){
             return Result.error();
         }

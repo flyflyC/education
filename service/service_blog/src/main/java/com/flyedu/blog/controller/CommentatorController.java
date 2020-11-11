@@ -38,7 +38,7 @@ public class CommentatorController {
     private UcentenClient ucentenClient;
 
     @ApiOperation(value = "分页查询")
-    @GetMapping("/pageComment/{current}/{limit}/{courseId}")
+    @GetMapping("/pageComment/{current}/{limit}/{blogId}")
     public Result pageComment(@PathVariable("current")Integer current,
                               @PathVariable("limit") Integer limit, @PathVariable String blogId){
         //创建page对象
@@ -62,7 +62,10 @@ public class CommentatorController {
         String nickName = userInfoForCom.getNickname();
         String avatar =  userInfoForCom.getAvatar();
         comment.setCname(nickName);
-
+        comment.setAvatar(avatar);
+        comment.setViews(10);
+        comment.setComments(10);
+        comment.setGoods(10);
         System.out.println(comment.toString());
         boolean save = commentatorService.save(comment);
         if (!save){
@@ -72,7 +75,7 @@ public class CommentatorController {
     }
 
     @ApiOperation(value = "删除评论")
-    @DeleteMapping("/addComment/{id}")
+    @DeleteMapping("/deleteComment/{id}")
     public Result deleteComment(@PathVariable String id){
         boolean b = commentatorService.removeById(id);
         if (b) {

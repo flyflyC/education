@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/eduService/chapter")
 @CrossOrigin
 @Api(description ="课程章节")
-public class EduChapterController {
+public class EduChapterController extends EduVideoController {
 
     @Autowired
     private EduChapterService chapterService;

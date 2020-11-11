@@ -61,7 +61,7 @@ public class UcenterMemberController {
         return Result.ok().data(map);
     }
 
-    @ApiOperation(value = "根据token获取用户信息")
+    @ApiOperation(value = "根据id获取用户信息")
     @PostMapping("/getUserInfoForCom/{id}")
     public UcentenMemberVo getUserInfoForCom(@PathVariable("id") String id){
         UcenterMember ucenterMember =ucenterMemberService.getById(id);

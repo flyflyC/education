@@ -74,7 +74,7 @@ public class EduCommentController {
     }
 
     @ApiOperation(value = "删除评论")
-    @DeleteMapping("/addComment/{id}")
+    @DeleteMapping("/deleteComment/{id}")
     public Result deleteComment(@PathVariable String id){
         boolean b = commentService.removeById(id);
         if (b) {
