@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @Description
- * @ClassName OosService
+ * @ClassName OssService
  * @Author cai feifei
  * @date 2020.10.12 23:35
  * @Version

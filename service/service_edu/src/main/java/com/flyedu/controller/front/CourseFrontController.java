@@ -65,9 +65,9 @@ public class CourseFrontController {
 
         //根据课程id和用户id判断付费课程是否已经支付
         String memberId = JwtUtils.getMemberIdByJwtToken(request);
-        if (StringUtils.isEmpty(memberId)){
+        /*if (StringUtils.isEmpty(memberId)){
             return Result.error().message("要登录才能购买，亲先登录吧！");
-        }
+        }*/
         Boolean isBuy = orderClient.isBuy(courseId, memberId);
         System.out.println(isBuy);
         Map<String,Object> map = new HashMap<>();

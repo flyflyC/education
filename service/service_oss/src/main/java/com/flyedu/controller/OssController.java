@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 /**
  * @Description
- * @ClassName OosController
+ * @ClassName OssController
  * @Author cai feifei
  * @date 2020.10.12 23:34
  * @Version

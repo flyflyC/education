@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @Description
- * @ClassName OosApplication
+ * @ClassName OssApplication
  * @Author cai feifei
  * @date 2020.10.12 22:58
  * @Version

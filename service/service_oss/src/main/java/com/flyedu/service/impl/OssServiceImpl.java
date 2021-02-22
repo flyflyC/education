@@ -13,7 +13,7 @@ import java.util.UUID;
 
 /**
  * @Description
- * @ClassName OosServiceImpl
+ * @ClassName OssServiceImpl
  * @Author cai feifei
  * @date 2020.10.12 23:35
  * @Version

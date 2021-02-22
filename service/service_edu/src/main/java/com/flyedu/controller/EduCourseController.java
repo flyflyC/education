@@ -185,7 +185,6 @@ public class EduCourseController extends EduChapterController {
         CourseWebVo baseCourseInfo = eduCourseService.getBaseCourseInfo(courseId);
         CourseWebOrderVo courseWebOrderVo = new CourseWebOrderVo();
         BeanUtils.copyProperties(baseCourseInfo,courseWebOrderVo);
-
         return courseWebOrderVo;
     }
 }
